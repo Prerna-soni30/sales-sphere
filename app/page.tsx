@@ -3,6 +3,7 @@ import Header from "@/components/header";
 import Hero from "@/components/hero";
 import Features from "@/components/features";
 import Footer from "@/components/footer";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -91,11 +92,19 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Trusted By</h2>
             <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">Join 10,000+ companies growing with SalesSphere</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-60">
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" />
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" style={{ animationDelay: "100ms" }} />
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" style={{ animationDelay: "200ms" }} />
-              <div className="h-12 w-32 bg-gray-300 dark:bg-gray-600 rounded animate-pulse" style={{ animationDelay: "300ms" }} />
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+              <div className="relative h-12 w-32">
+                <Image src="/trusted-1.jpg" alt="Trusted company 1" fill className="object-contain dark:invert" sizes="128px" />
+              </div>
+              <div className="relative h-12 w-32">
+                <Image src="/trusted-2.jpg" alt="Trusted company 2" fill className="object-contain dark:invert" sizes="128px" />
+              </div>
+              <div className="relative h-12 w-32">
+                <Image src="/trusted-3.jpg" alt="Trusted company 3" fill className="object-contain dark:invert" sizes="128px" />
+              </div>
+              <div className="relative h-12 w-32">
+                <Image src="/trusted-4.jpg" alt="Trusted company 4" fill className="object-contain dark:invert" sizes="128px" />
+              </div>
             </div>
           </div>
         </section>

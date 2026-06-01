@@ -22,7 +22,7 @@ export default function Hero() {
             </a>
           </div>
           <div className='mt-12 flex justify-center'>
-            <Image src='/hero-dashboard.jpg' alt='CRM Dashboard' width={600} height={400} className='rounded-lg shadow-lg' />
+            <Image src='/hero-dashboard.jpg' alt='CRM Dashboard' width={600} height={400} className='rounded-lg shadow-lg' loading="eager" />
           </div>
         </div>
       </div>

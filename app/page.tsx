@@ -1,9 +1,7 @@
-import ContactForm from "@/components/contact-form";
+import Link from "next/link";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import Features from "@/components/features";
-import Footer from "@/components/footer";
-import Image from "next/image";
 
 export default function Home() {
   return (
@@ -13,168 +11,256 @@ export default function Home() {
         <Hero />
         <Features />
         
-        {/* Solutions Section with Icons */}
-        <section id="solutions" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Solutions</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">Everything you need to transform your sales process</p>
+        {/* Solutions Section */}
+        <section id="solutions" className="relative py-20 sm:py-32 bg-gray-50/50 dark:bg-gray-800/50 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl h-full">
+            <div className="absolute top-10 left-10 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 sm:mb-20">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 mb-6">
+                <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">Solutions</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                Built for modern sales teams
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Powerful solutions that transform how you sell, collaborate, and grow.
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              <div className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent dark:from-blue-900/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                <div className="relative">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Sales Automation</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Automate your sales process and close deals faster with intelligent workflows.</p>
+                  <ul className="mt-4 space-y-2">
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Smart lead routing
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Auto-follow ups
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Custom triggers
+                    </li>
+                  </ul>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Sales Automation</h3>
-                <p className="text-gray-600 dark:text-gray-400">Automate your sales process and close deals faster</p>
               </div>
-              <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6m12 6v-6M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+
+              <div className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-50 to-transparent dark:from-green-900/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                <div className="relative">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6m12 6v-6M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Analytics & Insights</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Real-time data and predictive analytics to drive smarter decisions.</p>
+                  <ul className="mt-4 space-y-2">
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Predictive forecasting
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Custom dashboards
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Performance reports
+                    </li>
+                  </ul>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Analytics & Insights</h3>
-                <p className="text-gray-600 dark:text-gray-400">Real-time data and predictive analytics</p>
               </div>
-              <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-20 h-20 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+
+              <div className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent dark:from-purple-900/10 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                <div className="relative">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Enterprise Security</h3>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">Bank-grade security and compliance for complete peace of mind.</p>
+                  <ul className="mt-4 space-y-2">
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      SOC 2 compliant
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      End-to-end encryption
+                    </li>
+                    <li className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                      Role-based access
+                    </li>
+                  </ul>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Enterprise Security</h3>
-                <p className="text-gray-600 dark:text-gray-400">Bank-grade security for your data</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* Pricing Section */}
-        <section id="pricing" className="py-20 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">No hidden fees. No surprises. Cancel anytime.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center hover:border-blue-300 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Starter</h3>
-                <p className="text-3xl font-bold text-blue-600 mb-6">$29<span className="text-sm font-normal text-gray-600">/mo</span></p>
-                <ul className="text-left space-y-3 mb-8">
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Up to 100 leads</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Basic reporting</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Email support</li>
-                </ul>
-                <button className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Get Started</button>
-              </div>
-              <div className="border-2 border-blue-600 rounded-xl p-8 text-center relative bg-white dark:bg-gray-800 shadow-2xl scale-105">
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-1 text-sm rounded-full font-medium">Popular</span>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Professional</h3>
-                <p className="text-4xl font-bold text-blue-600 mb-6">$79<span className="text-lg font-normal text-gray-600">/mo</span></p>
-                <ul className="text-left space-y-3 mb-8">
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Unlimited leads</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Advanced analytics</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Priority support</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> API access</li>
-                </ul>
-                <button className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Get Started</button>
-              </div>
-              <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-8 text-center hover:border-blue-300 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Enterprise</h3>
-                <p className="text-3xl font-bold text-blue-600 mb-6">$199<span className="text-sm font-normal text-gray-600">/mo</span></p>
-                <ul className="text-left space-y-3 mb-8">
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Everything in Pro</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Custom integrations</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> Dedicated account manager</li>
-                  <li className="text-sm text-gray-600 dark:text-gray-400 flex items-center"><span className="text-green-500 mr-2">✓</span> SLA guarantee</li>
-                </ul>
-                <button className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">Contact Sales</button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <section id="pricing" className="relative py-20 sm:py-32 bg-white dark:bg-gray-900 overflow-hidden">
+          <div className="absolute top-1/4 left-0 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-purple-400/10 rounded-full blur-3xl"></div>
 
-        {/* Customers Section */}
-        <section id="customers" className="py-20 bg-gray-50 dark:bg-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Trusted By</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">Join 10,000+ companies growing with SalesSphere</p>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-              <div className="relative h-12 w-32">
-                <Image src="/trusted-1.jpg" alt="Trusted company 1" fill className="object-contain dark:invert" sizes="128px" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 sm:mb-20">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 mb-6">
+                <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">Pricing</span>
               </div>
-              <div className="relative h-12 w-32">
-                <Image src="/trusted-2.jpg" alt="Trusted company 2" fill className="object-contain dark:invert" sizes="128px" />
-              </div>
-              <div className="relative h-12 w-32">
-                <Image src="/trusted-3.jpg" alt="Trusted company 3" fill className="object-contain dark:invert" sizes="128px" />
-              </div>
-              <div className="relative h-12 w-32">
-                <Image src="/trusted-4.jpg" alt="Trusted company 4" fill className="object-contain dark:invert" sizes="128px" />
-              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                Simple, transparent pricing
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                No hidden fees. No surprises. Cancel anytime.
+              </p>
             </div>
-          </div>
-        </section>
 
-        {/* Resources Section */}
-        <section id="resources" className="py-20 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Resources</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">Everything you need to get the most out of SalesSphere</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <a href="/documentation" className="group p-8 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-all">
-                <span className="text-4xl mb-4 block">📖</span>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 transition-colors">Documentation</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">Detailed guides and API references</p>
-                <span className="text-sm text-blue-600">Learn more →</span>
-              </a>
-              <a href="/help-center" className="group p-8 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-all">
-                <span className="text-4xl mb-4 block">🎓</span>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 transition-colors">Help Center</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">Find answers to common questions</p>
-                <span className="text-sm text-blue-600">Visit Help Center →</span>
-              </a>
-              <a href="/community" className="group p-8 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-lg transition-all">
-                <span className="text-4xl mb-4 block">💬</span>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-blue-600 transition-colors">Community</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">Join our user community forum</p>
-                <span className="text-sm text-blue-600">Join Community →</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">About SalesSphere CRM</h2>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                  We're on a mission to help businesses grow by providing the best customer relationship management tools.
-                </p>
-                <p className="text-gray-600 dark:text-gray-400 mb-8">
-                  Founded in 2024, SalesSphere has helped over 10,000 companies streamline their sales processes and increase revenue.
-                </p>
-                <div className="flex gap-4">
-                  <a href="/careers" className="inline-block px-8 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors font-medium">Join Our Team</a>
-                  <a href="/about" className="inline-block px-8 py-3 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors font-medium">Learn More</a>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
+              <div className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Starter</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Perfect for small teams</p>
                 </div>
-              </div>
-              <div className="relative">
-                <div className="w-full h-96 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl flex items-center justify-center">
-                  <svg className="w-48 h-48 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9h14M5 15h14M11 3l4 4-4 4M11 19l4-4-4-4" /></svg>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-gray-900 dark:text-gray-100">$29</span>
+                  <span className="text-gray-600 dark:text-gray-400">/mo</span>
                 </div>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">Up to 100 leads</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">Basic reporting</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">Email support</span>
+                  </li>
+                </ul>
+                <button className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium">Get Started</button>
+              </div>
+
+              <div className="group relative p-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl shadow-2xl transform md:scale-105">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-4 py-1 text-sm font-bold rounded-full shadow-lg">Most Popular</span>
+                </div>
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">Professional</h3>
+                  <p className="text-sm text-blue-100">For growing businesses</p>
+                </div>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-white">$79</span>
+                  <span className="text-blue-100">/mo</span>
+                </div>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-blue-50">Unlimited leads</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-blue-50">Advanced analytics</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-blue-50">Priority support</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-white mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-blue-50">API access</span>
+                  </li>
+                </ul>
+                <button className="w-full py-3 bg-white text-blue-600 rounded-xl hover:bg-gray-100 transition-colors font-medium shadow-lg">Get Started</button>
+              </div>
+
+              <div className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-2xl transition-all duration-500">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Enterprise</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">For large organizations</p>
+                </div>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-gray-900 dark:text-gray-100">$199</span>
+                  <span className="text-gray-600 dark:text-gray-400">/mo</span>
+                </div>
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">Everything in Pro</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">Custom integrations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">Dedicated manager</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                    <span className="text-gray-600 dark:text-gray-400">SLA guarantee</span>
+                  </li>
+                </ul>
+                <button className="w-full py-3 bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium">Contact Sales</button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20 bg-white dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Contact Us</h2>
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">Have questions? We're here to help.</p>
-            <div className="max-w-lg mx-auto">
-              <ContactForm />
+        {/* CTA Section */}
+        <section className="relative cta-section py-20 sm:py-28 overflow-hidden">
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              Ready to transform your sales?
+            </h2>
+            <p className="text-lg sm:text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+              Join thousands of teams already using SalesSphere. Start your free trial today.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link href="/signup" className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-blue-600 bg-white rounded-xl hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl hover:-translate-y-0.5">
+                Get Started Free
+                <svg className="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+              <Link href="/login" className="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-200">
+                Sign In
+              </Link>
             </div>
           </div>
         </section>
       </main>
-      <Footer />
+      <footer className="bg-gray-900 text-gray-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                SalesSphere
+              </span>
+              <p className="text-sm text-gray-400 mt-2">© 2026 SalesSphere CRM. All rights reserved.</p>
+            </div>
+            <div className="flex space-x-6">
+              <Link href="https://linkedin.com" className="hover:text-white transition-colors">LinkedIn</Link>
+              <Link href="https://twitter.com" className="hover:text-white transition-colors">Twitter/X</Link>
+              <Link href="https://github.com" className="hover:text-white transition-colors">GitHub</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

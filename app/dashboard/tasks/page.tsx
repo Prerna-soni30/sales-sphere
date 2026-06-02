@@ -8,13 +8,25 @@ const tasks = [
   { id: 5, title: "Call Acme Corp for check-in", due: "2024-01-19", priority: "Medium", status: "Completed", assignee: "John Doe" },
 ];
 
+const getPriorityColor = (priority: string) => {
+  return priority === "High" ? "bg-red-100 text-red-800" :
+         priority === "Medium" ? "bg-amber-100 text-amber-800" :
+         "bg-green-100 text-green-800";
+};
+
+const getStatusColor = (status: string) => {
+  return status === "Completed" ? "bg-green-100 text-green-800" :
+         status === "In Progress" ? "bg-blue-100 text-blue-800" :
+         "bg-gray-100 text-gray-800";
+};
+
 export default function TasksPage() {
   return (
     <DashboardLayout>
       <div>
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6 gap-3">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Tasks</h1>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add Task</button>
+          <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 w-full sm:w-auto">Add Task</button>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
@@ -22,48 +34,80 @@ export default function TasksPage() {
             <input
               type="text"
               placeholder="Search tasks..."
-              className="w-full md:w-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
 
-          <table className="w-full">
-            <thead className="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Task</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assignee</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Due Date</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {/* Desktop Table View */}
+          <div className="hidden md:block">
+            <table className="w-full">
+              <thead className="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Task</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assignee</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Due Date</th>
+                  <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Priority</th>
+                  <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {tasks.map((task) => (
+                  <tr key={task.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-100">{task.title}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{task.assignee}</td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{task.due}</td>
+                    <td className="px-4 py-3 text-center">
+                      <span className={`px-2 py-1 text-xs rounded-full ${getPriorityColor(task.priority)}`}>
+                        {task.priority}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-center">
+                      <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(task.status)}`}>
+                        {task.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="block md:hidden">
+            <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+              <p className="text-xs font-medium text-gray-500">Tasks ({tasks.length})</p>
+            </div>
+            <div className="p-4">
               {tasks.map((task) => (
-                <tr key={task.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">{task.title}</td>
-                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">{task.assignee}</td>
-                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">{task.due}</td>
-                  <td className="px-6 py-4 text-center">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      task.priority === "High" ? "bg-red-100 text-red-800" :
-                      task.priority === "Medium" ? "bg-amber-100 text-amber-800" :
-                      "bg-green-100 text-green-800"
-                    }`}>
+                <div key={task.id} className="mobile-table-row mb-3 last:mb-0">
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Task</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{task.title}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Assignee</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{task.assignee}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Due Date</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{task.due}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Priority</span>
+                    <span className={`px-2 py-1 text-xs rounded-full ${getPriorityColor(task.priority)}`}>
                       {task.priority}
                     </span>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      task.status === "Completed" ? "bg-green-100 text-green-800" :
-                      task.status === "In Progress" ? "bg-blue-100 text-blue-800" :
-                      "bg-gray-100 text-gray-800"
-                    }`}>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Status</span>
+                    <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(task.status)}`}>
                       {task.status}
                     </span>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
       </div>
     </DashboardLayout>

@@ -27,30 +27,30 @@ export default function ReportsPage() {
   return (
     <DashboardLayout>
       <div>
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 md:mb-6 gap-3">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Reports</h1>
-          <button onClick={() => setShowModal(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center">
+          <button onClick={() => setShowModal(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center justify-center sm:justify-start">
             <span className="mr-1">+</span> Create Report
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {reports.map((report) => (
-            <div key={report.id} className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow hover:shadow-lg transition-shadow">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-3xl">{report.type === "Chart" ? "📊" : "📋"}</span>
+            <div key={report.id} className="bg-white dark:bg-gray-800 rounded-lg p-5 md:p-6 shadow hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1">
+              <div className="flex items-center justify-between mb-3 md:mb-4">
+                <span className="text-2xl md:text-3xl">{report.type === "Chart" ? "📊" : "📋"}</span>
                 <span className="text-xs text-gray-500">{report.lastGenerated}</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{report.name}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{report.type} Report</p>
-              <button className="text-sm text-blue-600 hover:text-blue-500">View Report →</button>
+              <h3 className="text-base md:text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{report.name}</h3>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-3 md:mb-4">{report.type} Report</p>
+              <a href="#" className="text-sm text-blue-600 hover:text-blue-500 inline-block">View Report →</a>
             </div>
           ))}
         </div>
 
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Create New Report</h2>
               <div className="space-y-4">
                 <input
@@ -69,9 +69,9 @@ export default function ReportsPage() {
                   <option>Table</option>
                 </select>
               </div>
-              <div className="flex justify-end space-x-2 mt-6">
-                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400">Cancel</button>
-                <button onClick={handleCreateReport} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Create Report</button>
+              <div className="flex flex-col sm:flex-row justify-end gap-2 mt-6">
+                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 order-2 sm:order-1">Cancel</button>
+                <button onClick={handleCreateReport} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 order-1 sm:order-2">Create Report</button>
               </div>
             </div>
           </div>

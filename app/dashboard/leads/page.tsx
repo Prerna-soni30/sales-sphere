@@ -28,12 +28,20 @@ export default function LeadsPage() {
     }
   };
 
+  const getStatusColor = (status: string) => {
+    return status === "New" ? "bg-blue-100 text-blue-800" :
+           status === "Contacted" ? "bg-amber-100 text-amber-800" :
+           status === "Qualified" ? "bg-purple-100 text-purple-800" :
+           status === "Negotiation" ? "bg-indigo-100 text-indigo-800" :
+           "bg-green-100 text-green-800";
+  };
+
   return (
     <DashboardLayout>
       <div>
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Lead Management</h1>
-          <button onClick={() => setShowModal(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center">
+          <button onClick={() => setShowModal(true)} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center justify-center sm:justify-start">
             <span className="mr-1">+</span> Add Lead
           </button>
         </div>
@@ -45,50 +53,86 @@ export default function LeadsPage() {
               placeholder="Search leads..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full md:w-64 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
           
-          <table className="w-full">
-            <thead className="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Value</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Created</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {/* Desktop Table View */}
+          <div className="hidden sm:block overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 dark:bg-gray-700">
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Value</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Created</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {filteredLeads.map((lead) => (
+                  <tr key={lead.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="px-4 py-3">
+                      <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{lead.name}</p>
+                      <p className="text-xs text-gray-500">{lead.email}</p>
+                    </td>
+                    <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">{lead.company}</td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(lead.status)}`}>
+                        {lead.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-right text-sm font-medium text-gray-900 dark:text-gray-100">{lead.value}</td>
+                    <td className="px-4 py-3 text-right text-sm text-gray-600 dark:text-gray-400">{lead.created}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Card View */}
+          <div className="block sm:hidden">
+            <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 mobile-table-header">
+              <p className="text-xs font-medium text-gray-500 uppercase">Leads ({filteredLeads.length})</p>
+            </div>
+            <div className="p-4">
               {filteredLeads.map((lead) => (
-                <tr key={lead.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <td className="px-6 py-4">
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{lead.name}</p>
-                    <p className="text-xs text-gray-500">{lead.email}</p>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">{lead.company}</td>
-                  <td className="px-6 py-4">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      lead.status === "New" ? "bg-blue-100 text-blue-800" :
-                      lead.status === "Contacted" ? "bg-amber-100 text-amber-800" :
-                      lead.status === "Qualified" ? "bg-purple-100 text-purple-800" :
-                      lead.status === "Negotiation" ? "bg-indigo-100 text-indigo-800" :
-                      "bg-green-100 text-green-800"
-                    }`}>
+                <div key={lead.id} className="mobile-table-row mb-3 last:mb-0">
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Name</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{lead.name}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Email</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{lead.email}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Company</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{lead.company}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Status</span>
+                    <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(lead.status)}`}>
                       {lead.status}
                     </span>
-                  </td>
-                  <td className="px-6 py-4 text-right text-sm font-medium text-gray-900 dark:text-gray-100">{lead.value}</td>
-                  <td className="px-6 py-4 text-right text-sm text-gray-600 dark:text-gray-400">{lead.created}</td>
-                </tr>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Value</span>
+                    <span className="text-sm font-medium text-gray-900 dark:text-gray-100">{lead.value}</span>
+                  </div>
+                  <div className="mobile-table-cell">
+                    <span className="text-xs font-medium text-gray-500">Created</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{lead.created}</span>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </div>
         </div>
 
         {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Add New Lead</h2>
               <div className="space-y-4">
                 <input
@@ -131,9 +175,9 @@ export default function LeadsPage() {
                   <option>Negotiation</option>
                 </select>
               </div>
-              <div className="flex justify-end space-x-2 mt-6">
-                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400">Cancel</button>
-                <button onClick={handleAddLead} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add Lead</button>
+              <div className="flex flex-col sm:flex-row justify-end gap-2 mt-6">
+                <button onClick={() => setShowModal(false)} className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 order-2 sm:order-1">Cancel</button>
+                <button onClick={handleAddLead} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 order-1 sm:order-2">Add Lead</button>
               </div>
             </div>
           </div>
